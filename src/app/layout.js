@@ -22,10 +22,7 @@ export const metadata = {
 };
 
 
-const geist = Geist({
-    variable: "--font-geist",
-    subsets: ["latin"],
-});
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -41,7 +38,7 @@ export default function RootLayout({ children }) {
         <ExcerciseProvider>
              <Navbar />
                {children}
-                <ToastContainer />
+             <ToastContainer />   
         </ExcerciseProvider>
         
 

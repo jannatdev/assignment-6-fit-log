@@ -1,30 +1,38 @@
 'use client';
-import SelectedExerciseCard from '@/Component/SelectedExerciseCard';
+import SelectedExerciseCard from '@/Component/SelectedExcerciseCard';
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext, useState } from 'react';
+  
+ export const getExcercises=async()=>{
+    const res =await fetch('https://api.abcz.workers.dev/api/fitlog');
+    const data= await res.json();
+    return data;}
 
 const MyPlanPage = () => {
 
- const {plannedExcercises,savedExcercises,minutes,calories} =useContext(ExcerciseContext);
+    const excercises =  getExcercises();
+    
+ const {plannedExcercises,minutes,calories,savedExcercises} =useContext(ExcerciseContext);
+ 
 
  const [shortBy,setShortBy] = useState("duration")
 
-   const shortExcercises=(excercises)=>{
-     const shortedExcercises= [...excercises];
+   const shortExercises=(exercises)=>{
+     const shortedExercises= [...exercises];
 
 
      if(shortBy==="duration"){
-        shortedExcercises.sort((a,b)=> a.duration - b.duration);
+        shortedExercises.sort((a,b)=> a.duration - b.duration);
      }else if(shortBy==="caloriesBurned"){
-        shortedExcercises.sort((a,b) => b.caloriesBurned -a.caloriesBurned);
+        shortedExercises.sort((a,b) => b.caloriesBurned -a.caloriesBurned);
      }else if(shortBy === "rating"){
-        shortedExcercises.sort((a,b) => a.rating-b.rating);
+        shortedExercises.sort((a,b) => a.rating-b.rating);
      }
-     return shortedExcercises;
+     return shortedExercises;
    }
     
-   const shortedPlannedExcercises =shortExcercises(plannedExcercises);
-   const shortedSavedExcercises = shortExcercises(savedExcercises);
+   const shortedPlannedExcercises =shortExercises(plannedExcercises);
+   const shortedSavedExcercises = shortExercises(savedExcercises);
  
  
     return (
@@ -51,39 +59,13 @@ const MyPlanPage = () => {
                 
             </div>
              
-             <div className='flex justify-between items-center'>
-                 <div className="overflow-x-auto max-w-60 my-5">
-                    <div className="tabs-lift tabs min-w-max">
-                        <input type="radio" name="my_tabs_7" className="tab z-1 bg-[#13161D] text-white" aria-label="Today's Plan" />
-                        <div className="sticky start-0 tab-content max-w-60 border-base-300 text-white p-6">
-                           {
-                            shortedPlannedExcercises.length>0?(
-                                shortedPlannedExcercises.map((exercise)=>{
-                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise}/>
-                                })
-                            ):(<p className='text-2xl font-bold'>No Excercise is found here</p>)
-                           }
-                        </div>
-                        
-                        <input type="radio" name="my_tabs_7" className="tab z-1  bg-[#13161D]  text-white" aria-label="Saved" defaultChecked />
-                        <div className="sticky start-0 tab-content max-w-60 border-base-300  p-6">
-                            
-                            {
-                            shortedSavedExcercises.length>0?(
-                                shortedSavedExcercises.map((exercise)=>{
-                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise}/>
-                                })
-                            ):(<p className='text-2xl font-bold'>No Excercise is found here</p>)
-                           } 
-                        </div>
-                        
-                    </div>
-                    
-                 </div>
-                 <div>
+             <div className='mx-auto'>
                         <fieldset className="fieldset bg-black">
                             <legend className="fieldset-legend text-[#CCFF00]">Short By</legend>
-                            <select defaultValue="Pick a browser" className="select bg-black border border-gray-300 px-15">
+                            <select
+                            value={shortBy}
+                            onChange={(e)=> setShortBy(e.target.value)}
+                              className="select bg-black border border-gray-300 px-15">
                                 <option disabled={true}>Short By</option>
                                 <option>Duration</option>
                                 <option>Calorries</option>
@@ -92,7 +74,39 @@ const MyPlanPage = () => {
                            
                             </fieldset>
                     </div>
-             </div>
+
+
+
+            <div className="overflow-x-auto w-full my-5">
+                    <div className="tabs-lift tabs w-full">
+                        <input type="radio" name="my_tabs_7" className="tab z-1 bg-[#13161D] text-white" aria-label="Today's Plan" />
+                        <div className="sticky inset-s-0 tab-content w-full border-base-300 text-white p-6">
+                           {
+                            shortedPlannedExcercises.length>0?(
+                                shortedPlannedExcercises.map((exercise)=>{
+                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise}  />
+                                })
+                            ):(<p className='text-2xl font-bold'>No Excercise is found here</p>)
+                           }
+                        </div>
+                        
+                        <input type="radio" name="my_tabs_7" className="tab z-1  bg-[#13161D]  text-white" aria-label="Saved" defaultChecked />
+                        <div className="sticky inset-s-0 tab-content w-full border-base-300  p-6">
+                            
+                            {
+                            shortedSavedExcercises.length>0?(
+                                shortedSavedExcercises.map((exercise)=>{
+                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise}  />
+                                })
+                            ):(<p className='text-2xl font-bold'>No Excercise is found here</p>)
+                           } 
+                        </div>
+                        
+                    </div>
+                    
+            </div>
+                 
+         
             
             
             <div className='text-center mt-20'>

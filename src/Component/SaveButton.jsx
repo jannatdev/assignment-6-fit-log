@@ -3,21 +3,49 @@
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RiSave2Line } from 'react-icons/ri';
+import { toast } from 'react-toastify';
 
 const SaveButton = ({excercise}) => {
 
-    const {setSavedExcercises,setMinutes,setCalories} =useContext(ExcerciseContext);
+    const {savedExcercises,setSavedExcercises,setMinutes,setCalories,isSaved,setIsSaved} =useContext(ExcerciseContext);
   
    
     const handleSaveButton=()=>{
-
+       
+        if(isSaved){
+            toast.warn(`${excercise.name} is already Saved`, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+            });
+            return
+        }
+        setIsSaved (true);
        
          setSavedExcercises((prev)=>[...prev,excercise]);
 
 
          setMinutes((prev)=> prev+excercise.duration);
          setCalories((prev)=>prev+excercise.caloriesBurned)
-                toast.success(`${excercise.name} is Saved`);
+                
+         
+         toast.success(`${excercise.name} is saved`, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce
+        });;
         
                 
     }
@@ -25,7 +53,8 @@ const SaveButton = ({excercise}) => {
         <div>
              <button 
              onClick={handleSaveButton}
-             className="mt-5 px-6 rounded-2xl flex items-center justify-center gap-2 bg-black border border-white py-3 text-sm font-semibold text-white transition"> <RiSave2Line /> Save to Later </button>
+             className="mt-5 px-6 rounded-2xl flex items-center justify-center gap-2 bg-black border border-white py-3 text-sm font-semibold text-white transition"> <RiSave2Line />
+             Save to Later  </button>
         </div>
     );
 };
