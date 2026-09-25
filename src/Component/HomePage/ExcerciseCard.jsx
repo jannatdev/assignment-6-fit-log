@@ -6,23 +6,23 @@
 import  Link  from 'next/link';
 import Image  from 'next/image';
 
-import { BiStar } from 'react-icons/bi';
+
 import { FaRegClock } from 'react-icons/fa';
 
-import { FaClockRotateLeft, FaFire, FaFireFlameCurved, FaStar } from 'react-icons/fa6';
+import { FaFire, FaStar } from 'react-icons/fa6';
   
 
    
-const ExerciseCard = ({exercise}) => {
+const ExcerciseCard = ({excercise}) => {
   //  console .log("Exercises",exercise)
     return (
-        <Link href={`/${exercise.id}`}>
-            <div className="w-full max-w-[395px]  rounded-2xl  text-white exercise mt-10">
+        <Link href={`/${excercise.id}`}>
+            <div className="w-full max-w-[395px]  rounded-2xl  text-white excercise mt-10">
           
           {/* Image */}
           <div className="relative h-[240px] w-full">
             <Image
-              src={exercise.image}
+              src={excercise.image}
               alt="exerciseImg"
               fill
               className="object-cover"
@@ -34,7 +34,7 @@ const ExerciseCard = ({exercise}) => {
             
             {/* Muscle Groups */}
             <div className="mb-4 flex gap-2">
-              {exercise.muscleGroups?.map((muscle) => (
+              {excercise.muscleGroups?.map((muscle) => (
                 <span
                   key={muscle}
                   className="rounded-full bg-[#c8ff00] px-3 py-1 text-[12px] font-bold uppercase text-black"
@@ -46,12 +46,12 @@ const ExerciseCard = ({exercise}) => {
 
             {/* Exercise Name */}
             <h2 className="text-xl font-extrabold uppercase tracking-wide">
-              {exercise.name}
+              {excercise.name}
             </h2>
 
             {/* Equipment */}
             <p className="mt-1 text-sm text-gray-400">
-              {exercise.equipment}
+              {excercise.equipment}
             </p>
 
             {/* Divider */}
@@ -63,19 +63,19 @@ const ExerciseCard = ({exercise}) => {
               {/* Duration */}
               <div className="flex items-center gap-2">
                 <FaRegClock className="text-[#C2F800]" />
-                <span>{exercise.duration} min</span>
+                <span>{excercise.duration} min</span>
               </div>
 
               {/* Calories */}
               <div className="flex items-center gap-2">
                 <FaFire className="text-[#C2F800]" />
-                <span>{exercise.caloriesBurned} kcal</span>
+                <span>{excercise.caloriesBurned} kcal</span>
               </div>
 
               {/* Rating */}
               <div className="flex items-center gap-2">
                 <FaStar className="text-[#C2F800]" />
-                <span>{exercise.rating}</span>
+                <span>{excercise.rating}</span>
               </div>
 
             </div>
@@ -86,4 +86,4 @@ const ExerciseCard = ({exercise}) => {
     );
 };
 
-export default ExerciseCard;
+export default ExcerciseCard;

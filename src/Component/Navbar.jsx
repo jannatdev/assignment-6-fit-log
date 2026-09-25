@@ -1,13 +1,17 @@
 'use client'
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
 import Logo from '../app/asset/logo.png'
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { usePathname } from 'next/navigation';
+import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 
 const Navbar = () => {
 
+
+    const {plannedExcercises,savedExcercises}=useContext(ExcerciseContext)
+    
     const pathname = usePathname()
 
     const link=<>
@@ -42,14 +46,14 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar-end space-x-4 flex items-center">
-                            <Link href={'/'}> 
+                            <Link href={'/MyPlan'}> 
                             <button className='text-[12px]'>Plan</button>
                             </Link>
-                            <button className='bg-[#C2F800] rounded-2xl px-2 text-[12px] text-black'>0</button>
-                            <Link href={'/'}> 
-                            <button className='text-[12px]'>Plan</button>
+                            <button className='bg-[#C2F800] rounded-2xl px-2 text-[12px] text-black'>{plannedExcercises.length} </button>
+                            <Link href={'/MyPlan'}> 
+                            <button className='text-[12px]'>Saved</button>
                             </Link>
-                            <button  className='text-[12px]'>0</button>
+                            <button  className='text-[12px] border border-gray-700 rounded-2xl px-2'>{savedExcercises.length} </button>
                     </div>
 
                 </div>

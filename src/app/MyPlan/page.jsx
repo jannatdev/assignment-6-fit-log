@@ -1,6 +1,32 @@
-import React from 'react';
+'use client';
+import SelectedExerciseCard from '@/Component/SelectedExerciseCard';
+import { ExcerciseContext } from '@/Context/ExcerciseProvider';
+import React, { useContext, useState } from 'react';
 
 const MyPlanPage = () => {
+
+ const {plannedExcercises,savedExcercises,minutes,calories} =useContext(ExcerciseContext);
+
+ const [shortBy,setShortBy] = useState("duration")
+
+   const shortExcercises=(excercises)=>{
+     const shortedExcercises= [...excercises];
+
+
+     if(shortBy==="duration"){
+        shortedExcercises.sort((a,b)=> a.duration - b.duration);
+     }else if(shortBy==="caloriesBurned"){
+        shortedExcercises.sort((a,b) => b.caloriesBurned -a.caloriesBurned);
+     }else if(shortBy === "rating"){
+        shortedExcercises.sort((a,b) => a.rating-b.rating);
+     }
+     return shortedExcercises;
+   }
+    
+   const shortedPlannedExcercises =shortExcercises(plannedExcercises);
+   const shortedSavedExcercises = shortExcercises(savedExcercises);
+ 
+ 
     return (
         <div className='container mx-auto'>
             <div className='space-y-2'>
@@ -11,30 +37,64 @@ const MyPlanPage = () => {
             <div className='grid grid-cols-3 bg-[#13161D] py-10 px-5 mt-10 mx-auto'>
                 <div>
                     <p className='text-[12px] text-[#9CA3AF]'>Exercises</p>
-                    <button className='text-[36px] font-bold text-[#CCFF00]'>0</button>
+                    <button className='text-[36px] font-bold text-[#CCFF00]'>{plannedExcercises.length+savedExcercises.length}</button>
+                    
                 </div>
                 <div >
                     <p className='text-[12px] text-[#9CA3AF]'>Minutes</p>
-                    <button className='text-[36px] font-bold '>0</button>
+                    <button className='text-[36px] font-bold '>{minutes}</button>
                 </div>
                 <div >
                     <p className='text-[12px] text-[#9CA3AF]'>Calories</p>
-                    <button className='text-[36px] font-bold'>0</button>
+                    <button className='text-[36px] font-bold'>{calories}</button>
                 </div>
                 
             </div>
-
-            
-            <div className="overflow-x-auto max-w-60 my-5">
+             
+             <div className='flex justify-between items-center'>
+                 <div className="overflow-x-auto max-w-60 my-5">
                     <div className="tabs-lift tabs min-w-max">
                         <input type="radio" name="my_tabs_7" className="tab z-1 bg-[#13161D] text-white" aria-label="Today's Plan" />
-                        <div className="sticky start-0 tab-content max-w-60 border-base-300 text-white p-6"></div>
+                        <div className="sticky start-0 tab-content max-w-60 border-base-300 text-white p-6">
+                           {
+                            shortedPlannedExcercises.length>0?(
+                                shortedPlannedExcercises.map((exercise)=>{
+                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise}/>
+                                })
+                            ):(<p className='text-2xl font-bold'>No Excercise is found here</p>)
+                           }
+                        </div>
                         
                         <input type="radio" name="my_tabs_7" className="tab z-1  bg-[#13161D]  text-white" aria-label="Saved" defaultChecked />
-                        <div className="sticky start-0 tab-content max-w-60 border-base-300  p-6"> </div>
+                        <div className="sticky start-0 tab-content max-w-60 border-base-300  p-6">
+                            
+                            {
+                            shortedSavedExcercises.length>0?(
+                                shortedSavedExcercises.map((exercise)=>{
+                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise}/>
+                                })
+                            ):(<p className='text-2xl font-bold'>No Excercise is found here</p>)
+                           } 
+                        </div>
                         
                     </div>
-            </div>
+                    
+                 </div>
+                 <div>
+                        <fieldset className="fieldset bg-black">
+                            <legend className="fieldset-legend text-[#CCFF00]">Short By</legend>
+                            <select defaultValue="Pick a browser" className="select bg-black border border-gray-300 px-15">
+                                <option disabled={true}>Short By</option>
+                                <option>Duration</option>
+                                <option>Calorries</option>
+                                <option>Rating</option>
+                            </select>
+                           
+                            </fieldset>
+                    </div>
+             </div>
+            
+            
             <div className='text-center mt-20'>
                 <h2 className='text-[30px] font-bold'>NOTHING HERE YET</h2>
                 <p className='text-[14px]'>Browse the library and add a lift to get today moving.</p>
