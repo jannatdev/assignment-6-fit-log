@@ -5,19 +5,19 @@ import React, { useContext, useState } from 'react';
 import { MdOutlineDateRange } from 'react-icons/md';
 import { Bounce, toast } from 'react-toastify';
 
-const PlanButton = ({excercise}) => {
+const PlanButton = ({exercise}) => {
 
 
     const { plannedExcercises,setPlannedExcercises,minutes,setMinutes,calories,setCalories,isPlanned,setIsPlanned} =useContext(ExcerciseContext);
     
-    const alreadyPlanned=plannedExcercises.some((item)=> item.id === Number(excercise.id))
+    const alreadyPlanned=plannedExcercises.some((item)=> item.id === Number(exercise.id))
     
     
     const handlePlanButton=()=>{
         
        if(alreadyPlanned){
         
-        toast.warn(`${excercise.name} is already planned`, {
+        toast.warn(`${exercise.name} is already planned`, {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -36,13 +36,13 @@ const PlanButton = ({excercise}) => {
       
         setPlannedExcercises((prev)=>[...prev,excercise]);
         
-        const newMinutes = minutes+ excercise.duration
+        const newMinutes = minutes+ exercise.duration
         setMinutes (newMinutes)
        
-        const newCalories= calories+excercise.caloriesBurned
+        const newCalories= calories+exercise.caloriesBurned
         setCalories(newCalories);
 
-        toast.success(`${excercise.name} is added`, {
+        toast.success(`${exercise.name} is added`, {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,

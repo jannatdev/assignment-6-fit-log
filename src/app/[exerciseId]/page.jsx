@@ -2,25 +2,30 @@ import PlanButton from '@/Component/PlanButton';
 import SaveButton from '@/Component/SaveButton';
 import Image  from 'next/image';
 import React from 'react';
+import {notFound} from 'next/navigation';
 
 
-export const getExcercises=async()=>{
+export const getExercises=async()=>{
     const res =await fetch('https://api.abcz.workers.dev/api/fitlog');
     const data= await res.json();
     return data;}
 
 const ExerciseDetailspage = async({params}) => {
     const {exerciseId}=await params
-    const excercises = await getExcercises();
+    const exercises = await getExercises();
 
-    const excercise=excercises.find(item=> String(item.id )=== String(exerciseId))
+    const exercise=exercises.find(item=> String(item.id )=== String(exerciseId))
+
+    if(!exercise){
+        notFound();
+    }
 
     return (
-        <div className="  grid md:grid-cols-2 container mx-auto overflow-hidden rounded-2xl bg-[#0F1115] border border-gray-200 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"> {/* Image */} 
+        <div className="  grid gap-100 md:grid-cols-2 md:gap-10 container mx-auto overflow-hidden rounded-2xl bg-[#0F1115] border border-gray-200 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"> {/* Image */} 
             <div className="  h-56 "> 
                 <div>
                     <Image
-                        src={excercise.image}
+                        src={exercise.image}
                         alt="exercise Img"
                         width={200} 
                         height={200}
@@ -37,12 +42,12 @@ const ExerciseDetailspage = async({params}) => {
                 
             <div className="p-5 "> 
                  <div className="mb-3 ">
-                     <h2 className="text-[30px] font-bold text-white"> {excercise.name} </h2> 
-                      <p className="mb-5 line-clamp-2 text-sm leading-6 text-[#9CA3AF]"> {excercise.description} </p>
+                     <h2 className="text-[30px] font-bold text-white"> {exercise.name} </h2> 
+                      <p className="mb-5 line-clamp-2 text-sm leading-6 text-[#9CA3AF]"> {exercise.description} </p>
                  </div> 
                 {/* Muscle Groups */}
                 <div className="mb-4 flex flex-wrap gap-2"> 
-                        {excercise.muscleGroups?.map((muscle) => (
+                        {exercise.muscleGroups?.map((muscle) => (
                              <span key={muscle} className="rounded-full bg-[#C2F800] px-3 py-1 text-xs font-medium text-black" >
                                  {muscle} </span> ))} 
                 </div>
@@ -53,35 +58,35 @@ const ExerciseDetailspage = async({params}) => {
                     <tbody>
                         <tr className='flex justify-between items-center border border-gray-800 py-2 px-6'>
                              <td className='text-[14px] text-[#9CA3AF]  '>Equipment</td>
-                             <td className='text-[12px]'>{excercise.equipment}</td>
+                             <td className='text-[12px]'>{exercise.equipment}</td>
                         </tr>
                         <tr className='flex justify-between items-center border border-gray-800  py-2 px-6 '>
                             <td className='text-[14px] text-[#9CA3AF]'>Difficulty</td>
                        
-                            <td className='text-[12px]'>{excercise.difficulty}</td>
+                            <td className='text-[12px]'>{exercise.difficulty}</td>
                         </tr>
 
                         <tr className='flex justify-between items-center border border-gray-800  py-2 px-6'>
                             <td className='text-[14px] text-[#9CA3AF]'>Sets</td>
-                            <td className='text-[12px]'>{excercise.sets}</td>
+                            <td className='text-[12px]'>{exercise.sets}</td>
                         </tr>
 
                         <tr className='flex justify-between items-center border border-gray-800  py-2 px-6 '>
                             <td className='text-[14px] text-[#9CA3AF]'>Reps</td>
-                            <td className='text-[12px]'>{excercise.reps}</td>
+                            <td className='text-[12px]'>{exercise.reps}</td>
                         </tr>
 
                         <tr className='flex justify-between items-center border border-gray-800  py-2 px-6'>
                            <td className='text-[14px] text-[#9CA3AF]'>Duration</td>
-                           <td className='text-[12px]'>{excercise.duration} min</td>
+                           <td className='text-[12px]'>{exercise.duration} min</td>
                         </tr>
                         <tr className='flex justify-between items-center border border-gray-800  py-2 px-6'>
                             <td className='text-[14px] text-[#9CA3AF]'>Calories</td>
-                            <td className='text-[12px]'>{excercise.caloriesBurned} kcal</td>
+                            <td className='text-[12px]'>{exercise.caloriesBurned} kcal</td>
                         </tr>
                         <tr className='flex justify-between items-center border border-gray-800  py2 px-6'>
                             <td className='text-[14px] text-[#9CA3AF]'>Rating</td>
-                            <td className='text-[12px]'>{excercise.rating} </td>
+                            <td className='text-[12px]'>{exercise.rating} </td>
                         </tr>
                      </tbody>
                     
@@ -104,8 +109,8 @@ const ExerciseDetailspage = async({params}) => {
                 </div >
                 {/* Button */} 
                 <div className='flex items-center gap-6 mt-6'>
-                    <PlanButton  excercise={excercise}></PlanButton>
-                    <SaveButton  excercise={excercise}></SaveButton>        
+                    <PlanButton  exercise={exercise}></PlanButton>
+                    <SaveButton  exercise={exercise}></SaveButton>        
                 </div>
                 
             </div>

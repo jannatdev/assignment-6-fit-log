@@ -27,12 +27,12 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      data-theme="dark"
       
-      
-      className={`${geistSans.variable} ${geistMono.variable}  dark  h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable}  dark w-full h-full antialiased`}
     >
      
-      <body className="  text-black dark:bg-gray-950 dark:text-white bg-white min-h-full flex flex-col">
+      <body className="text-black dark:bg-gray-950 dark:text-white bg-white w-full min-h-full m-0 p-0 flex flex-col">
         
         
         <ExcerciseProvider>

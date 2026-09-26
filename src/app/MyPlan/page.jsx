@@ -1,6 +1,7 @@
 'use client';
 import SelectedExerciseCard from '@/Component/SelectedExcerciseCard';
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useContext, useState } from 'react';
   
@@ -40,13 +41,13 @@ const MyPlanPage = () => {
  
     return (
         
-        <div className='container mx-auto'>
-            <div className='space-y-2'>
+        <div className=' mx-auto'>
+            <div className=' text-center md:text-left space-y-2'>
                 <h2 className='text-[30px] font-bold'>MY PLAN</h2>
                 <p className='text-[14px]'>Cap of five lifts for today. Finish them, then load more.</p>
             </div>
          
-            <div className='grid grid-cols-3 bg-[#13161D] py-10 px-5 mt-10 mx-auto'>
+            <div className='grid grid-cols-3 bg-[#13161D] py-10 px-5 mt-10 container mx-auto'>
                 <div>
                     <p className='text-[12px] text-[#9CA3AF]'>Exercises</p>
                     <button className='text-[36px] font-bold text-[#CCFF00]'>{plannedExcercises.length+savedExcercises.length}</button>
@@ -63,7 +64,7 @@ const MyPlanPage = () => {
                 
             </div>
              
-             <div className='mx-auto'>
+             <div className='container mx-auto'>
                         <fieldset className="fieldset bg-black">
                             <legend className="fieldset-legend text-[#CCFF00]">Short By</legend>
                             <select
@@ -86,10 +87,8 @@ const MyPlanPage = () => {
                         
                         <input type="radio"
                          name="my_tabs_7" 
-                        checked={pathname==='/planned'}
-                        onChange={()=>{}}
-
-                        className="tab z-1 bg-[#13161D] text-white checked:text-[#C2F800]"
+                        
+                        className="tab z-1 bg-[#13161D] text-white "
                           aria-label="Today's Plan" />
                         <div className="sticky inset-s-0 tab-content w-full border-base-900  p-6">
                           
@@ -100,7 +99,10 @@ const MyPlanPage = () => {
                             ):(<div className='text-center mt-20'>
                                     <h2 className='text-[30px] font-bold'>NOTHING HERE YET</h2>
                                     <p className='text-[14px]'>Browse the library and add a lift to get today moving.</p>
+                                    <Link href={'/'}>
                                     <button className="mt-5  rounded-2xl px-6  bg-[#C2F800] text-black py-3 text-sm font-semibold transition hover:bg-[#C2F800]"> Go to workouts </button>
+                                    </Link>
+                                    
                                 </div>)
                            }
                         </div>
@@ -116,7 +118,9 @@ const MyPlanPage = () => {
                             ):(<div className='text-center mt-30'>
                                 <h2 className='text-[30px] font-bold'>NOTHING HERE YET</h2>
                                 <p className='text-[14px]'>Browse the library and add a lift to get today moving.</p>
-                                <button className="mt-5  rounded-2xl px-6  bg-[#C2F800] text-black py-3 text-sm font-semibold transition hover:bg-[#C2F800]"> Go to workouts </button>
+                                 <Link href={'/'}>
+                                    <button className="mt-5  rounded-2xl px-6  bg-[#C2F800] text-black py-3 text-sm font-semibold transition hover:bg-[#C2F800]"> Go to workouts </button>
+                                 </Link>
                             </div>)
                            } 
                         </div>

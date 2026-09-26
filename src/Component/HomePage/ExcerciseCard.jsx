@@ -13,16 +13,16 @@ import { FaFire, FaStar } from 'react-icons/fa6';
   
 
    
-const ExcerciseCard = ({excercise}) => {
+const ExcerciseCard = ({exercise}) => {
   //  console .log("Exercises",exercise)
     return (
-        <Link href={`/${excercise.id}`}>
-            <div className="w-full max-w-[395px]  rounded-2xl  text-white excercise mt-10">
+        <Link href={`/${exercise.id}`}>
+            <div className="w-full max-w-[395px]  rounded-2xl  text-white excercise mt-10 container mx-auto">
           
           {/* Image */}
           <div className="relative h-[240px] w-full">
             <Image
-              src={excercise.image}
+              src={exercise.image}
               alt="exerciseImg"
               fill
               className="object-cover"
@@ -34,7 +34,7 @@ const ExcerciseCard = ({excercise}) => {
             
             {/* Muscle Groups */}
             <div className="mb-4 flex gap-2">
-              {excercise.muscleGroups?.map((muscle) => (
+              {exercise.muscleGroups?.map((muscle) => (
                 <span
                   key={muscle}
                   className="rounded-full bg-[#c8ff00] px-3 py-1 text-[12px] font-bold uppercase text-black"
@@ -46,12 +46,12 @@ const ExcerciseCard = ({excercise}) => {
 
             {/* Exercise Name */}
             <h2 className="text-xl font-extrabold uppercase tracking-wide">
-              {excercise.name}
+              {exercise.name}
             </h2>
 
             {/* Equipment */}
             <p className="mt-1 text-sm text-gray-400">
-              {excercise.equipment}
+              {exercise.equipment}
             </p>
 
             {/* Divider */}
@@ -63,19 +63,19 @@ const ExcerciseCard = ({excercise}) => {
               {/* Duration */}
               <div className="flex items-center gap-2">
                 <FaRegClock className="text-[#C2F800]" />
-                <span>{excercise.duration} min</span>
+                <span>{exercise.duration} min</span>
               </div>
 
               {/* Calories */}
               <div className="flex items-center gap-2">
                 <FaFire className="text-[#C2F800]" />
-                <span>{excercise.caloriesBurned} kcal</span>
+                <span>{exercise.caloriesBurned} kcal</span>
               </div>
 
               {/* Rating */}
               <div className="flex items-center gap-2">
                 <FaStar className="text-[#C2F800]" />
-                <span>{excercise.rating}</span>
+                <span>{exercise.rating}</span>
               </div>
 
             </div>
