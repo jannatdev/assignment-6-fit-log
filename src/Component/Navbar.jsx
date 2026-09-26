@@ -22,10 +22,10 @@ const Navbar = () => {
         
             
 
-                <div className="navbar  shadow-sm ">
+                <div className="navbar  shadow-sm container mx-auto  ">
                     
                    
-                 <div className="navbar-start flex items-center justify-between container mx-auto  ">
+                 <div className="navbar-start flex items-center justify-between gap-130 mx-4">
                      <div className="dropdown md:hidden  ">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-sm" >
                              <svg aria-label="Menu" xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" >
@@ -46,7 +46,7 @@ const Navbar = () => {
 
 
 
-                    <div className="navbar-center hidden md:flex lg:flex mr-25">
+                    <div className="navbar-center hidden md:flex lg:flex ">
                         <ul className="menu menu-horizontal px-1">
                         {link}
                         </ul>

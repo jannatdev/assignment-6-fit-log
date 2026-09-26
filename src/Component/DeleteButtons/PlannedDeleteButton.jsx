@@ -3,7 +3,7 @@ import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
-// import { Bounce, toast, ToastContainer} from 'react-toastify';
+
 
 const PlannedDeleteButton = ({exercise}) => {
     const {plannedExcercises,setPlannedExcercises,setMinutes,setCalories}=useContext(ExcerciseContext)
