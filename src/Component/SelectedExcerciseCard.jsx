@@ -18,7 +18,7 @@ const SelectedExerciseCard = ({exercise,type}) => {
 
     return (
        
-      <div className='container max-auto'>
+      <div className='container max-auto '>
         
           <div className="flex items-center gap-4 rounded-lg border border-gray-700 bg-[#151922] p-2.5 text-white shadow-sm">
       
@@ -33,7 +33,7 @@ const SelectedExerciseCard = ({exercise,type}) => {
       </div>
 
       {/* Exercise Information */}
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 flex-1 hidden md:block">
         <h3 className="truncate text-sm font-bold uppercase tracking-wide">
           {exercise.name}
         </h3>

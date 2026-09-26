@@ -41,13 +41,13 @@ const MyPlanPage = () => {
  
     return (
         
-        <div className=' mx-auto'>
-            <div className=' text-center md:text-left space-y-2'>
+        <div className='container mx-auto mt-10'>
+            <div className='container mx-auto ml-10 text-center md:text-left space-y-2'>
                 <h2 className='text-[30px] font-bold'>MY PLAN</h2>
                 <p className='text-[14px ] text-[#9CA3AF]'>Cap of five lifts for today. Finish them, then load more.</p>
             </div>
          
-            <div className='grid grid-cols-3 bg-[#13161D] py-10 px-5 mt-10 container mx-auto'>
+            <div className='grid grid-cols-3 bg-[#13161D] py-10 px-5 mt-15 ml-10 container mx-auto'>
                 <div>
                     <p className='text-[12px] text-[#9CA3AF]'>Exercises</p>
                     <button className='text-[36px] font-bold text-[#CCFF00]'>{plannedExcercises.length+savedExcercises.length}</button>
@@ -63,8 +63,10 @@ const MyPlanPage = () => {
                 </div>
                 
             </div>
-             
-             <div className='container mx-auto'>
+
+            {/*  */}
+
+         <div className='container mx-auto ml-10 my-10'>
                         <fieldset className="fieldset bg-black">
                             <legend className="fieldset-legend text-[#CCFF00]">Short By</legend>
                             <select
@@ -72,62 +74,74 @@ const MyPlanPage = () => {
                             onChange={(e)=> setShortBy(e.target.value)}
                               className="select bg-black border border-gray-300 px-15">
                                 <option disabled={true}>Short By</option>
-                                <option>Duration</option>
-                                <option>Calorries</option>
-                                <option>Rating</option>
+                                <option value="duration">Duration</option>
+                                <option value="caloriesBurned">Calorries</option>
+                                <option value="rating">Rating</option>
                             </select>
                            
                             </fieldset>
-                    </div>
+                   </div>
 
-
-
-            <div className="overflow-x-auto w-full my-5">
-                    <div className="tabs-lift tabs w-full">
-                        
-                        <input type="radio"
-                         name="my_tabs_7" 
-                        
-                        className="tab z-1 bg-[#13161D] text-white "
-                          aria-label="Today's Plan" />
-                        <div className="sticky inset-s-0 tab-content w-full border-base-900  p-6">
-                          
-                            {shortedPlannedExcercises.length>0?(
-                                shortedPlannedExcercises.map((exercise)=>{
-                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise} type="planned"  />
-                                })
-                            ):(<div className='text-center mt-20'>
+            
+         <div className="overflow-x-auto w-full ml-10">
+                        <div className="tabs-lift tabs w-full">
+                            
+                            <input type="radio"
+                            name="my_tabs_7" 
+                            
+                            className="tab z-1 bg-[#13161D] text-white "
+                            aria-label="Today's Plan" />
+                            <div className="sticky inset-s-0 tab-content w-full border-base-900  p-6">
+                            
+                                {shortedPlannedExcercises.length>0?(
+                                    shortedPlannedExcercises.map((exercise)=>{
+                                        return <SelectedExerciseCard key={exercise.id} exercise={exercise} type="planned"  />
+                                    })
+                                ):(<div className='text-center mt-20'>
+                                        <h2 className='text-[30px] font-bold'>NOTHING HERE YET</h2>
+                                        <p className='text-[14px]'>Browse the library and add a lift to get today moving.</p>
+                                        <Link href={'/'}>
+                                        <button className="mt-5  rounded-2xl px-6  bg-[#C2F800] text-black py-3 text-sm font-semibold transition hover:bg-[#C2F800]"> Go to workouts </button>
+                                        </Link>
+                                        
+                                    </div>)
+                            }
+                            </div>
+                            
+                            <input type="radio" name="my_tabs_7" className="tab z-1  bg-[#13161D]  text-white" aria-label="Saved" defaultChecked />
+                            <div className="sticky inset-s-0 tab-content w-full border-base-300  p-6">
+                                
+                                {
+                                shortedSavedExcercises.length>0?(
+                                    shortedSavedExcercises.map((exercise)=>{
+                                        return <SelectedExerciseCard key={exercise.id} exercise={exercise} type="saved" />
+                                    })
+                                ):(<div className='text-center mt-20'>
                                     <h2 className='text-[30px] font-bold'>NOTHING HERE YET</h2>
                                     <p className='text-[14px]'>Browse the library and add a lift to get today moving.</p>
                                     <Link href={'/'}>
-                                    <button className="mt-5  rounded-2xl px-6  bg-[#C2F800] text-black py-3 text-sm font-semibold transition hover:bg-[#C2F800]"> Go to workouts </button>
+                                        <button className="mt-5  rounded-2xl px-6  bg-[#C2F800] text-black py-3 text-sm font-semibold transition hover:bg-[#C2F800]"> Go to workouts </button>
                                     </Link>
-                                    
                                 </div>)
-                           }
-                        </div>
-                        
-                        <input type="radio" name="my_tabs_7" className="tab z-1  bg-[#13161D]  text-white" aria-label="Saved" defaultChecked />
-                        <div className="sticky inset-s-0 tab-content w-full border-base-300  p-6">
+                            } 
+                            </div>
                             
-                            {
-                            shortedSavedExcercises.length>0?(
-                                shortedSavedExcercises.map((exercise)=>{
-                                    return <SelectedExerciseCard key={exercise.id} exercise={exercise} type="saved" />
-                                })
-                            ):(<div className='text-center mt-30'>
-                                <h2 className='text-[30px] font-bold'>NOTHING HERE YET</h2>
-                                <p className='text-[14px]'>Browse the library and add a lift to get today moving.</p>
-                                 <Link href={'/'}>
-                                    <button className="mt-5  rounded-2xl px-6  bg-[#C2F800] text-black py-3 text-sm font-semibold transition hover:bg-[#C2F800]"> Go to workouts </button>
-                                 </Link>
-                            </div>)
-                           } 
                         </div>
                         
-                    </div>
+        </div>
+
+
                     
-            </div>
+
+                  
+
+           
+             
+             
+
+
+
+            
                  
          
             

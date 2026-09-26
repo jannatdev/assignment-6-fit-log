@@ -4,6 +4,7 @@ import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RiSave2Line } from 'react-icons/ri';
 import { Bounce, toast } from 'react-toastify';
+// import { Bounce, toast } from 'react-toastify';
 
 const SaveButton = ({exercise}) => {
 
@@ -22,7 +23,7 @@ const SaveButton = ({exercise}) => {
             draggable: true,
             progress: undefined,
             theme: "light",
-            transition: Bounce,
+            transition: Bounce
             });
             return
         }
