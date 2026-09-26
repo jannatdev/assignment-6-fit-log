@@ -44,7 +44,7 @@ const MyPlanPage = () => {
         <div className=' mx-auto'>
             <div className=' text-center md:text-left space-y-2'>
                 <h2 className='text-[30px] font-bold'>MY PLAN</h2>
-                <p className='text-[14px]'>Cap of five lifts for today. Finish them, then load more.</p>
+                <p className='text-[14px ] text-[#9CA3AF]'>Cap of five lifts for today. Finish them, then load more.</p>
             </div>
          
             <div className='grid grid-cols-3 bg-[#13161D] py-10 px-5 mt-10 container mx-auto'>

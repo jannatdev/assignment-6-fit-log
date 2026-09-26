@@ -8,7 +8,7 @@ import { Bounce, toast } from 'react-toastify';
 const PlanButton = ({exercise}) => {
 
 
-    const { plannedExcercises,setPlannedExcercises,minutes,setMinutes,calories,setCalories,isPlanned,setIsPlanned} =useContext(ExcerciseContext);
+    const { plannedExcercises,setPlannedExcercises,minutes,setMinutes,calories,setCalories} =useContext(ExcerciseContext);
     
     const alreadyPlanned=plannedExcercises.some((item)=> item.id === Number(exercise.id))
     
@@ -34,7 +34,7 @@ const PlanButton = ({exercise}) => {
         // setIsPlanned (true);
        
       
-        setPlannedExcercises((prev)=>[...prev,excercise]);
+        setPlannedExcercises((prev)=>[...prev,exercise]);
         
         const newMinutes = minutes+ exercise.duration
         setMinutes (newMinutes)

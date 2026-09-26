@@ -28,7 +28,7 @@ const SaveButton = ({exercise}) => {
         }
         
        
-         setSavedExcercises((prev)=>[...prev,excercise]);
+         setSavedExcercises((prev)=>[...prev,exercise]);
 
 
          setMinutes((prev)=> prev+exercise.duration);
