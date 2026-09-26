@@ -3,16 +3,16 @@
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RiSave2Line } from 'react-icons/ri';
-import { toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 
 const SaveButton = ({excercise}) => {
 
-    const {savedExcercises,setSavedExcercises,setMinutes,setCalories,isSaved,setIsSaved} =useContext(ExcerciseContext);
-  
+    const {savedExcercises,setSavedExcercises,setMinutes,setCalories,} =useContext(ExcerciseContext);
+     const alreadySaved = savedExcercises.some((item)=> item.id ===Number(excercise.id))
    
     const handleSaveButton=()=>{
        
-        if(isSaved){
+        if(alreadySaved){
             toast.warn(`${excercise.name} is already Saved`, {
             position: "top-right",
             autoClose: 2000,
@@ -26,7 +26,7 @@ const SaveButton = ({excercise}) => {
             });
             return
         }
-        setIsSaved (true);
+        
        
          setSavedExcercises((prev)=>[...prev,excercise]);
 

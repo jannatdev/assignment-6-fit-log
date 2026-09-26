@@ -15,8 +15,8 @@ const Navbar = () => {
     const pathname = usePathname()
 
     const link=<>
-            <li><Link  className="text-[12px]"  href={'/'}>Workouts</Link></li>
-            <li><Link className="text-[12px]" href={'/MyPlan'}>My Plan</Link></li>
+            <li><Link  className={`${pathname === '/'?  " text-[#C2F800]" :""} "text-[12px]"`}  href={'/'}>Workouts</Link></li>
+            <li><Link className={`${pathname === '/MyPlan'?  " text-[#C2F800]" :""} "text-[12px]"`} href={'/MyPlan'}>My Plan</Link></li>
             
     </>
     return (
@@ -33,7 +33,7 @@ const Navbar = () => {
                         </div>
                         <ul
                             tabIndex={-1}
-                            className=" menu menu-sm dropdown-content mt-3 w-52 p-2 shadow">
+                            className=" block md:hidden menu menu-sm dropdown-content mt-3 w-52 p-2 shadow">
                             {link}
                         </ul>
                         <div className='flex gap-1 items-center'>

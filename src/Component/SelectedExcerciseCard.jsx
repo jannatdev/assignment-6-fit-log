@@ -1,17 +1,15 @@
-'use client';
+
 import  Image  from 'next/image';
 import React, { useContext } from 'react';
-import { RxCross2 } from 'react-icons';
-import { FaUserCheck } from 'react-icons/fa';
+
 import { FaClockRotateLeft, FaFire } from 'react-icons/fa6';
 import { IoMdCheckmark } from 'react-icons/io';
 import { MdOutlineStar } from 'react-icons/md';
-import { RxCross1 } from 'react-icons/rx';
-import DeletePlannedButton from './DeleteButtons/DeletePlannedButton';
-import { ExcerciseContext } from '@/Context/ExcerciseProvider';
+import PlannedDeleteButton from './DeleteButtons/PlannedDeleteButton';
+import SavedDeleteButton from './DeleteButtons/SavedDeleteButton';
 
 
-const SelectedExerciseCard = ({exercise}) => {
+const SelectedExerciseCard = ({exercise,type}) => {
    
    
     
@@ -77,8 +75,15 @@ const SelectedExerciseCard = ({exercise}) => {
           <IoMdCheckmark size={14} />
           Mark as Done
         </button>
-          
-       <DeletePlannedButton exercise={exercise}></DeletePlannedButton>
+         {type === "planned" && (
+            <PlannedDeleteButton exercise={exercise}></PlannedDeleteButton>
+         )}
+
+          {type === "saved" && (
+            <SavedDeleteButton exercise={exercise}></SavedDeleteButton>
+          )}
+       
+       
       </div>
     </div>
         

@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
       lang="en"
       
       
-      className={`${geistSans.variable} ${geistMono.variable} ${geist.variable} dark  h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable}  dark  h-full antialiased`}
     >
      
       <body className="  text-black dark:bg-gray-950 dark:text-white bg-white min-h-full flex flex-col">
@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
         <ExcerciseProvider>
              <Navbar />
                {children}
-             <ToastContainer />   
+             
         </ExcerciseProvider>
         
 

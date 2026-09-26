@@ -10,12 +10,12 @@ const PlanButton = ({excercise}) => {
 
     const { plannedExcercises,setPlannedExcercises,minutes,setMinutes,calories,setCalories,isPlanned,setIsPlanned} =useContext(ExcerciseContext);
     
-    
+    const alreadyPlanned=plannedExcercises.some((item)=> item.id === Number(excercise.id))
     
     
     const handlePlanButton=()=>{
         
-       if(isPlanned){
+       if(alreadyPlanned){
         
         toast.warn(`${excercise.name} is already planned`, {
             position: "top-right",
@@ -31,7 +31,7 @@ const PlanButton = ({excercise}) => {
         return;
         
        }
-        setIsPlanned (true);
+        // setIsPlanned (true);
        
       
         setPlannedExcercises((prev)=>[...prev,excercise]);
