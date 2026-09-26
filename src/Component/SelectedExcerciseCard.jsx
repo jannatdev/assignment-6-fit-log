@@ -7,6 +7,8 @@ import { IoMdCheckmark } from 'react-icons/io';
 import { MdOutlineStar } from 'react-icons/md';
 import PlannedDeleteButton from './DeleteButtons/PlannedDeleteButton';
 import SavedDeleteButton from './DeleteButtons/SavedDeleteButton';
+import MarkDoneButton from './MarkDoneButton';
+import Link from 'next/link';
 
 
 const SelectedExerciseCard = ({exercise,type}) => {
@@ -16,7 +18,7 @@ const SelectedExerciseCard = ({exercise,type}) => {
 
     return (
        
-      <div>
+      <div className='container max-auto'>
         
           <div className="flex items-center gap-4 rounded-lg border border-gray-700 bg-[#151922] p-2.5 text-white shadow-sm">
       
@@ -62,19 +64,18 @@ const SelectedExerciseCard = ({exercise,type}) => {
       {/* Buttons */}
       <div className="flex shrink-0 items-center gap-2">
 
-       
-        <button
+       <Link href={'/'}>
+             <button
           className="rounded-full border border-gray-600 px-4 py-2 text-xs text-gray-300 transition hover:border-gray-400 hover:text-white"
         >
           View Details
         </button>
-
-        <button
-          className="flex items-center gap-1.5 rounded-full bg-lime-400 px-4 py-2 text-xs font-semibold text-black transition hover:bg-lime-300"
-        >
-          <IoMdCheckmark size={14} />
-          Mark as Done
-        </button>
+       </Link>
+       
+        {type==="planned" && (
+          <MarkDoneButton exercise={exercise}></MarkDoneButton>
+        )}
+        
          {type === "planned" && (
             <PlannedDeleteButton exercise={exercise}></PlannedDeleteButton>
          )}

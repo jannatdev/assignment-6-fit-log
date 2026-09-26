@@ -1,6 +1,7 @@
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RxCross1 } from 'react-icons/rx';
+import { toast } from 'react-toastify';
 
 const PlannedDeleteButton = ({exercise}) => {
     const {plannedExcercises,setPlannedExcercises,setMinutes,setCalories}=useContext(ExcerciseContext)
@@ -14,6 +15,8 @@ const PlannedDeleteButton = ({exercise}) => {
           
           setMinutes((prev)=> prev-(exercise.duration));
           setCalories((prev)=>prev-(exercise.caloriesBurned))
+
+          toast.error("Item is deleted")
         }
     return (
         <div>
