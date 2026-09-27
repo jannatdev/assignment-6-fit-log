@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { IoMdCheckmark } from 'react-icons/io';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 
 
 const MarkDoneButton = ({exercise}) => {
@@ -30,7 +30,7 @@ const MarkDoneButton = ({exercise}) => {
           <IoMdCheckmark size={14} />
           Mark as Done
         </button>
-         <ToastContainer />
+         
         </div>
     );
 };

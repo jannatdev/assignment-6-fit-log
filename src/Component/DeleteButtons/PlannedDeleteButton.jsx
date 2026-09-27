@@ -2,7 +2,7 @@
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RxCross1 } from 'react-icons/rx';
-import {  Bounce, toast, ToastContainer } from 'react-toastify';
+import {  Bounce, toast} from 'react-toastify';
 
 
 
@@ -51,7 +51,7 @@ const PlannedDeleteButton = ({exercise}) => {
                 aria-label="Remove exercise"
                 >
                 <RxCross1 size={14} />
-              <ToastContainer />
+             
             </button> 
           
         </div>

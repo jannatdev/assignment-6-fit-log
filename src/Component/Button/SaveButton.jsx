@@ -3,7 +3,7 @@
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RiSave2Line } from 'react-icons/ri';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 
 
 
@@ -57,7 +57,7 @@ const SaveButton = ({exercise}) => {
              onClick={handleSaveButton}
              className="mt-5 px-6 rounded-2xl flex items-center justify-center gap-2 bg-black border hover:border-[#C2F800] border-white py-3 text-sm font-semibold text-white transition"> <RiSave2Line />
              Save to Later  </button>
-            <ToastContainer />
+           
         </div>
     );
 };
