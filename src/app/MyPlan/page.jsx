@@ -4,18 +4,14 @@ import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useContext, useState } from 'react';
-  
- export const getExcercises=async()=>{
-    const res =await fetch('https://api.abcz.workers.dev/api/fitlog');
-    const data= await res.json();
-    return data;}
 
+ 
 const MyPlanPage = () => {
 
-    const excercises =  getExcercises();
-    const pathname = usePathname()
+   
+   
     
- const {plannedExcercises,minutes,calories,savedExcercises,selectedExercises} =useContext(ExcerciseContext);
+ const {plannedExcercises,minutes,calories,savedExcercises} =useContext(ExcerciseContext);
  
 
  const [shortBy,setShortBy] = useState("duration")

@@ -3,7 +3,8 @@
 import { ExcerciseContext } from '@/Context/ExcerciseProvider';
 import React, { useContext } from 'react';
 import { RxCross1 } from 'react-icons/rx';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
+import {  Bounce, toast, ToastContainer } from 'react-toastify';
+
 
 
 const SavedDeleteButton = ({exercise}) => {
@@ -13,22 +14,22 @@ const SavedDeleteButton = ({exercise}) => {
     const handleSavedDeleteButton=()=>{
     
     
-    const restSavedExcercises=savedExcercises.filter(savedExcercis=> String(savedExcercis.id) !==String(exercise.id))
-     setSavedExcercises(restSavedExcercises);
+       const restSavedExcercises=savedExcercises.filter(savedExcercis=> (savedExcercis.id) !==Number(exercise.id))
+          setSavedExcercises(restSavedExcercises);
           
           setMinutes((prev)=> prev-(exercise.duration));
           setCalories((prev)=>prev-(exercise.caloriesBurned))
-
+           
           toast.error(`${exercise.name} is deleted`, {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: false,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
             theme: "light",
-            transition: Bounce
+            transition: Bounce,
             });
     }
     

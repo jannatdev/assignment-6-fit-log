@@ -1,14 +1,12 @@
-import PlanButton from '@/Component/PlanButton';
-import SaveButton from '@/Component/SaveButton';
+import PlanButton from '@/Component/Button/PlanButton';
+import SaveButton from '@/Component/Button/SaveButton';
 import Image  from 'next/image';
 import React from 'react';
 import {notFound} from 'next/navigation';
+import { getExercises } from '@/lib/page';
 
 
-export const getExercises=async()=>{
-    const res =await fetch('https://api.abcz.workers.dev/api/fitlog');
-    const data= await res.json();
-    return data;}
+
 
 const ExerciseDetailspage = async({params}) => {
     const {exerciseId}=await params
@@ -21,15 +19,16 @@ const ExerciseDetailspage = async({params}) => {
     }
 
     return (
-        <div className="  grid gap-100 md:grid-cols-2 md:gap-10 container mx-auto overflow-hidden rounded-2xl bg-[#0F1115] border border-gray-200 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl"> {/* Image */} 
+        <div className="grid gap-100 md:grid-cols-2 md:gap-6 container mx-auto overflow-hidden rounded-2xl bg-[#0F1115] border border-gray-200 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+             {/* Image */} 
             <div className="  h-56 "> 
                 <div>
                     <Image
                         src={exercise.image}
                         alt="exercise Img"
-                        width={200} 
-                        height={200}
-                        className="object-cover w-full h-full p-5 rounded-xl" /> 
+                        width={200}
+                        height={400}
+                        className="object-cover w-full h-160 rounded-xl px-6 py-4" /> 
                        
                   
                 
@@ -40,7 +39,7 @@ const ExerciseDetailspage = async({params}) => {
 
             
                 
-            <div className="p-5 "> 
+            <div className="p-5  "> 
                  <div className="mb-3 ">
                      <h2 className="text-[30px] font-bold text-white"> {exercise.name} </h2> 
                       <p className="mb-5 line-clamp-2 text-sm leading-6 text-[#9CA3AF]"> {exercise.description} </p>

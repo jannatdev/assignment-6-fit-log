@@ -6,6 +6,7 @@ import { RiSave2Line } from 'react-icons/ri';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 
+
 const SaveButton = ({exercise}) => {
 
     const {savedExcercises,setSavedExcercises,setMinutes,setCalories,} =useContext(ExcerciseContext);
@@ -54,9 +55,9 @@ const SaveButton = ({exercise}) => {
         <div>
              <button 
              onClick={handleSaveButton}
-             className="mt-5 px-6 rounded-2xl flex items-center justify-center gap-2 bg-black border border-white py-3 text-sm font-semibold text-white transition"> <RiSave2Line />
+             className="mt-5 px-6 rounded-2xl flex items-center justify-center gap-2 bg-black border hover:border-[#C2F800] border-white py-3 text-sm font-semibold text-white transition"> <RiSave2Line />
              Save to Later  </button>
-              <ToastContainer />
+            <ToastContainer />
         </div>
     );
 };

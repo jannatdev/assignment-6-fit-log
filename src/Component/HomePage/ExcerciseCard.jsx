@@ -17,10 +17,10 @@ const ExcerciseCard = ({exercise}) => {
   //  console .log("Exercises",exercise)
     return (
         <Link href={`/${exercise.id}`}>
-            <div className="w-full max-w-[395px]  rounded-2xl  text-white excercise mt-10 container mx-auto">
+            <div className="w-full max-w-[395px]  rounded-2xl  text-white border border-gray-700 hover:border-[#d0ee63] excercise mt-10 container mx-auto">
           
           {/* Image */}
-          <div className="relative h-[240px] w-full">
+          <div className="relative h-65 w-full">
             <Image
               src={exercise.image}
               alt="exerciseImg"

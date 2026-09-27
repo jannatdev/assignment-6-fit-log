@@ -7,7 +7,7 @@ import { IoMdCheckmark } from 'react-icons/io';
 import { MdOutlineStar } from 'react-icons/md';
 import PlannedDeleteButton from './DeleteButtons/PlannedDeleteButton';
 import SavedDeleteButton from './DeleteButtons/SavedDeleteButton';
-import MarkDoneButton from './MarkDoneButton';
+import MarkDoneButton from './Button/MarkDoneButton';
 import Link from 'next/link';
 
 
